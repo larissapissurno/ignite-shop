@@ -8,6 +8,7 @@ import 'keen-slider/keen-slider.min.css'
 import { GetStaticProps } from "next/types"
 import { stripe } from "@/lib/stripe"
 import Stripe from "stripe"
+import Link from "next/link"
 
 interface HomeProps {
   products: {
@@ -29,14 +30,16 @@ export default function Home({ products }: HomeProps) {
   return (
     <HomeContainer ref={sliderRef} className="keen-slider">
       {products.map(product => (
-        <Product className="keen-slider__slide" key={product.id}>
-          <Image src={product.imageUrl} width={520} height={480} alt="" />
+        <Link key={product.id} href={`product/${product.id}`}>
+          <Product className="keen-slider__slide">
+            <Image src={product.imageUrl} width={520} height={480} alt="" />
 
-          <footer>
-            <strong>{product.name}</strong>
-            <span>{product.price}</span>
-          </footer>
-        </Product>
+            <footer>
+              <strong>{product.name}</strong>
+              <span>{product.price}</span>
+            </footer>
+          </Product>
+        </Link>
       ))}
 
     </HomeContainer>
