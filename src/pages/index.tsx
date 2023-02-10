@@ -48,7 +48,7 @@ export default function Home({ products }: HomeProps) {
                 </div>
 
                 <ShoppingCartButton color="green">
-                  <Handbag size={24} />
+                  <Handbag size={32} weight="bold"/>
                 </ShoppingCartButton>
               </footer>
             </Product>
