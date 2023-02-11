@@ -1,32 +1,22 @@
 import { globalStyles } from '@/styles/global'
 import type { AppProps } from 'next/app'
-import logo from '@/assets/logo.svg'
-import { Handbag } from 'phosphor-react'
-import { Container, Header, ShoppingCartButton } from '@/styles/pages/app'
-import Image from 'next/image'
+import { Container } from '@/styles/pages/app'
 import { useState } from 'react'
+import { ShoppingCartProvider, useShoppingCart } from '@/contexts/ShoppingCartContext'
+import { Header } from '@/components/Header'
 
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [quantity, setQuantity] = useState(2)
-
-  const empty = quantity === 0
-  
   return (
-    <Container>
-      <Header>
-        <Image src={logo} alt="" />
+      <Container>
+        <ShoppingCartProvider>
 
-        <ShoppingCartButton empty={empty}>
-          <Handbag size={24} />
+          <Header />
 
-          {!empty && <span>{quantity}</span>}
-        </ShoppingCartButton>
-      </Header>
+          <Component {...pageProps} />
 
-
-      <Component {...pageProps} />
-    </Container>
+        </ShoppingCartProvider>
+      </Container>
   )
 }

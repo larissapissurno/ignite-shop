@@ -8,17 +8,6 @@ export const Container = styled('div', {
   minHeight: '100vh',
 })
 
-export const Header = styled('header', {
-  padding: '2rem 0',
-  width: '100%',
-  maxWidth: '1180px',
-  margin: '0 auto',
-
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-})
-
 export const ShoppingCartButton = styled('button', {
   display: 'flex',
   alignItems: 'center',
@@ -57,7 +46,6 @@ export const ShoppingCartButton = styled('button', {
     color: {
       gray: {
         backgroundColor: '$gray800',
-        cursor: 'not-allowed',
       },
       green: {
         backgroundColor: '$green500',
@@ -81,6 +69,7 @@ export const ShoppingCartButton = styled('button', {
       empty: true,
       css: {
         color: '$gray300',
+        cursor: 'not-allowed',
       }
     },
     {
@@ -88,6 +77,7 @@ export const ShoppingCartButton = styled('button', {
       empty: false,
       css: {
         color: '$gray100',
+        cursor: 'pointer',
       }
     }
   ],
