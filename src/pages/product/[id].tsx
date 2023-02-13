@@ -7,6 +7,7 @@ import Stripe from "stripe"
 import axios from 'axios'
 import { useState } from "react"
 import Head from "next/head"
+import { useShoppingCart } from "@/contexts/ShoppingCartContext"
 
 interface ProductProps {
   product: {
@@ -21,6 +22,7 @@ interface ProductProps {
 
 export default function Product( { product }: ProductProps ) {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false)
+  const { addProduct } = useShoppingCart()
   
   async function handleBuyProduct() {
     try {
@@ -59,9 +61,15 @@ export default function Product( { product }: ProductProps ) {
 
           <p>{product.description}</p>
 
-          <button disabled={isCheckoutLoading} onClick={handleBuyProduct}>
-            Comprar agora
-          </button>
+          <div>
+            <button disabled={isCheckoutLoading} onClick={() => addProduct(product)}>
+              Adicionar na sacola
+            </button>
+
+            <button disabled={isCheckoutLoading} onClick={handleBuyProduct}>
+              Comprar agora
+            </button>
+          </div>
         </ProductDetails>
       </ProductContainer>
     </>

@@ -23,9 +23,9 @@ export const {
     },
 
     fontSizes: {
-      sm: '0.875rem',
-      md: '1.125rem',
-      lg: '1.25rem',
+      sm: '0.875rem', // 14px
+      md: '1.125rem', // 18px
+      lg: '1.25rem', // 20px
       xl: '1.5rem',
       '2xl': '2rem',
     }
