@@ -25,6 +25,12 @@ export const Content = styled(Dialog.Content, {
   }
 })
 
+export const ContentContainer = styled('div', {
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+})
+
 export const CloseButton = styled(Dialog.Close, {
   position: 'absolute',
   backgroundColor: 'transparent',
@@ -64,7 +70,6 @@ export const ItemImageContainer = styled('div', {
   borderRadius: 8
 })
 
-
 export const ItemInfoContainer = styled('div', {
   height: '100%',
 
@@ -97,6 +102,58 @@ export const ItemInfoContainer = styled('div', {
     '&:hover': {
       color: '$green300',
       transition: 'color 0.2s'
+    }
+  }
+})
+
+export const CheckoutContainer = styled('div', {
+  marginTop: 'auto',
+
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '3.5rem',
+
+  button: {
+    backgroundColor: '$green500',
+    border: 'none',
+    color: '$white',
+    borderRadius: '8px',
+    padding: '1.25rem',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+    fontSize: '$md',
+
+    width: '100%',
+
+    '&:disabled': {
+      opacity: 0.6,
+      cursor: 'not-allowed',
+    },
+
+    '&:not(:disabled):hover': {
+      backgroundColor: '$green300',
+      transition: 'background-color 0.2s'
+    }
+  }
+})
+
+export const CheckoutInfo = styled('div', {
+  div: {
+    display: 'flex',
+    justifyContent: 'space-between',
+
+    span: {
+      fontSize: 16,
+      lineHeight: 1.6,
+    },
+
+    strong: {
+      fontSize: 16,
+      lineHeight: 1.6,
+    },
+
+    'strong:nth-of-type(2)': {
+      fontSize: '$xl',
     }
   }
 })
