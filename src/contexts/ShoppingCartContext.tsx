@@ -10,6 +10,8 @@ interface ShoppingCartContextData {
   toggleOpenModal: (open: boolean) => void
   products: Product[]
   addProduct: (product: Product) => void
+  showShoppingCart: boolean
+  setShowShoppingCart: (show: boolean) => void
 }
 
 interface ShoppingCartProviderProps {
@@ -24,6 +26,7 @@ export function useShoppingCart() {
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [openModal, setOpenModal] = useState(false)
+  const [showShoppingCart, setShowShoppingCart] = useState(true)
   const [products, setProducts] = useState<Product[]>([])
 
 
@@ -36,7 +39,14 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   }
 
   return (
-    <ShoppingCartContext.Provider value={{ openModal, toggleOpenModal, products, addProduct }}>
+    <ShoppingCartContext.Provider value={{
+        openModal,
+        toggleOpenModal,
+        products,
+        addProduct,
+        showShoppingCart,
+        setShowShoppingCart
+      }}>
       {children}
 
       <ShoppingCartModal />

@@ -1,5 +1,6 @@
+import { useShoppingCart } from "@/contexts/ShoppingCartContext";
 import { stripe } from "@/lib/stripe";
-import { ImageContainer, SuccessContainer } from "@/styles/pages/success";
+import { ImageContainer, ImageListContainer, SuccessContainer } from "@/styles/pages/success";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -15,6 +16,9 @@ interface SuccessProps {
 }
 
 export default function Success({ customerName, product}: SuccessProps) {
+  const { setShowShoppingCart } = useShoppingCart()
+
+  setShowShoppingCart(false)
   
   return (
     <>
@@ -24,11 +28,24 @@ export default function Success({ customerName, product}: SuccessProps) {
         <meta name="robots" content="noindex" />
       </Head>
       <SuccessContainer>
-        <h1>Compra efetuada!</h1>
 
-        <ImageContainer>
-          <Image src={product.imageUrl} alt={""} width={120} height={110} />
-        </ImageContainer>
+        <ImageListContainer>
+          <ImageContainer>
+            <Image src={product.imageUrl} alt={""} width={120} height={110} />
+          </ImageContainer>
+
+          <ImageContainer>
+            <Image src={product.imageUrl} alt={""} width={120} height={110} />
+          </ImageContainer>
+
+          <ImageContainer>
+            <Image src={product.imageUrl} alt={""} width={120} height={110} />
+          </ImageContainer>
+        </ImageListContainer>
+
+        
+
+        <h1>Compra efetuada!</h1>
 
         <p>
           Uhuul <strong>{customerName}</strong>, {' '}

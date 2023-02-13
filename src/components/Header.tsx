@@ -7,18 +7,20 @@ import { useShoppingCart } from '@/contexts/ShoppingCartContext'
 
 
 export function Header() {
-  const { toggleOpenModal } = useShoppingCart()
+  const { toggleOpenModal, showShoppingCart } = useShoppingCart()
   
   const empty = false
   return (
-    <HeaderContainer>
+    <HeaderContainer centralized={!showShoppingCart}>
       <Image src={logo} alt="" />
 
-      <ShoppingCartButton empty={empty} onClick={() => toggleOpenModal(true)}>
-        <Handbag size={24} />
+      {showShoppingCart && (
+        <ShoppingCartButton empty={empty} onClick={() => toggleOpenModal(true)}>
+          <Handbag size={24} />
 
-        {!empty && <span>{2}</span>}
-      </ShoppingCartButton>
+          {!empty && <span>{2}</span>}
+        </ShoppingCartButton>
+      )}
     </HeaderContainer>
   )
 }
