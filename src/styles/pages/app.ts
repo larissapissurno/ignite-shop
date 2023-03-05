@@ -1,4 +1,4 @@
-import { styled } from "..";
+import { styled } from '..'
 
 export const Container = styled('div', {
   display: 'flex',
@@ -55,12 +55,12 @@ export const ShoppingCartButton = styled('button', {
         '&:hover': {
           backgroundColor: '$green300',
           transition: 'background-color 0.2s',
-        }
-      }
+        },
+      },
     },
     empty: {
-      true: {}
-    }
+      true: {},
+    },
   },
 
   compoundVariants: [
@@ -70,7 +70,7 @@ export const ShoppingCartButton = styled('button', {
       css: {
         color: '$gray300',
         cursor: 'not-allowed',
-      }
+      },
     },
     {
       color: 'gray',
@@ -78,13 +78,12 @@ export const ShoppingCartButton = styled('button', {
       css: {
         color: '$gray100',
         cursor: 'pointer',
-      }
-    }
+      },
+    },
   ],
 
   defaultVariants: {
     color: 'gray',
     empty: true,
-  }
+  },
 })
-

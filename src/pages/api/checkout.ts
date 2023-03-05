@@ -1,16 +1,19 @@
-import { stripe } from "@/lib/stripe";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { stripe } from '@/lib/stripe'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const priceId: string = req.body.priceId;
-  const successUrl = `${process.env.NEXT_PUBLIC_URL}/success?session_id={CHECKOUT_SESSION_ID}`;
-  const cancelUrl = `${process.env.NEXT_PUBLIC_URL}/`;
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  const priceId: string = req.body.priceId
+  const successUrl = `${process.env.NEXT_PUBLIC_URL}/success?session_id={CHECKOUT_SESSION_ID}`
+  const cancelUrl = `${process.env.NEXT_PUBLIC_URL}/`
 
   if (!priceId) {
     return res.status(400).json({
       error: {
-        message: 'Missing priceId'
-      }
+        message: 'Missing priceId',
+      },
     })
   }
 
@@ -22,11 +25,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       {
         price: priceId,
         quantity: 1,
-      }
-    ]
+      },
+    ],
   })
 
   return res.status(201).json({
-    checkoutUrl: checkoutSession.url
+    checkoutUrl: checkoutSession.url,
   })
 }

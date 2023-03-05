@@ -1,5 +1,5 @@
-import * as Dialog from "@radix-ui/react-dialog"
-import { styled } from ".."
+import * as Dialog from '@radix-ui/react-dialog'
+import { styled } from '..'
 
 export const Overlay = styled(Dialog.Overlay, {
   position: 'fixed',
@@ -22,7 +22,7 @@ export const Content = styled(Dialog.Content, {
 
   h2: {
     fontSize: '$lg',
-  }
+  },
 })
 
 export const ContentContainer = styled('div', {
@@ -43,7 +43,6 @@ export const CloseButton = styled(Dialog.Close, {
   cursor: 'pointer',
 
   color: '$gray500',
-
 })
 
 export const ItemsContainer = styled('div', {
@@ -67,7 +66,7 @@ export const ItemImageContainer = styled('div', {
   height: '100%',
   width: 102,
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  borderRadius: 8
+  borderRadius: 8,
 })
 
 export const ItemInfoContainer = styled('div', {
@@ -78,12 +77,12 @@ export const ItemInfoContainer = styled('div', {
 
   span: {
     fontSize: '$md',
-    lineHeight: 1.6
+    lineHeight: 1.6,
   },
 
   strong: {
     fontSize: '$md',
-    lineHeight: 1.6
+    lineHeight: 1.6,
   },
 
   button: {
@@ -101,9 +100,9 @@ export const ItemInfoContainer = styled('div', {
 
     '&:hover': {
       color: '$green300',
-      transition: 'color 0.2s'
-    }
-  }
+      transition: 'color 0.2s',
+    },
+  },
 })
 
 export const CheckoutContainer = styled('div', {
@@ -132,9 +131,9 @@ export const CheckoutContainer = styled('div', {
 
     '&:not(:disabled):hover': {
       backgroundColor: '$green300',
-      transition: 'background-color 0.2s'
-    }
-  }
+      transition: 'background-color 0.2s',
+    },
+  },
 })
 
 export const CheckoutInfo = styled('div', {
@@ -154,6 +153,6 @@ export const CheckoutInfo = styled('div', {
 
     'strong:nth-of-type(2)': {
       fontSize: '$xl',
-    }
-  }
+    },
+  },
 })

@@ -1,4 +1,4 @@
-import { styled } from "..";
+import { styled } from '..'
 
 export const ProductContainer = styled('main', {
   display: 'grid',
@@ -9,7 +9,6 @@ export const ProductContainer = styled('main', {
   maxWidth: 1180,
   margin: '0 auto',
 })
-
 
 export const ImageContainer = styled('div', {
   width: '100%',
@@ -25,8 +24,8 @@ export const ImageContainer = styled('div', {
   justifyContent: 'center',
 
   img: {
-    objectFit: 'cover'
-  }
+    objectFit: 'cover',
+  },
 })
 
 export const ProductDetails = styled('div', {
@@ -36,7 +35,7 @@ export const ProductDetails = styled('div', {
   h1: {
     fontSize: '$2xl',
     // fontWeight: 'bold',
-    color: '$gray300'
+    color: '$gray300',
   },
 
   span: {
@@ -50,7 +49,7 @@ export const ProductDetails = styled('div', {
     marginTop: '2.5rem',
     fontSize: '$md',
     lineHeight: 1.6,
-    color: '$gray300'
+    color: '$gray300',
   },
 
   div: {
@@ -76,9 +75,8 @@ export const ProductDetails = styled('div', {
 
       '&:not(:disabled):hover': {
         backgroundColor: '$green300',
-        transition: 'background-color 0.2s'
-      }
-    }
+        transition: 'background-color 0.2s',
+      },
+    },
   },
-
 })

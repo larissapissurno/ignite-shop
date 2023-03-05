@@ -5,10 +5,9 @@ import logo from '@/assets/logo.svg'
 import { Handbag } from 'phosphor-react'
 import { useShoppingCart } from '@/contexts/ShoppingCartContext'
 
-
 export function Header() {
   const { toggleOpenModal, showShoppingCart } = useShoppingCart()
-  
+
   const empty = false
   return (
     <HeaderContainer centralized={!showShoppingCart}>

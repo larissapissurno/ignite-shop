@@ -1,13 +1,22 @@
-import { useShoppingCart } from '@/contexts/ShoppingCartContext';
-import { CheckoutContainer, CheckoutInfo, CloseButton, Content, ContentContainer, Item, ItemImageContainer, ItemInfoContainer, ItemsContainer, Overlay } from '@/styles/components/shoppingCartModal';
-import * as Dialog from '@radix-ui/react-dialog';
-import Image from 'next/image';
-import { X } from 'phosphor-react';
+import { useShoppingCart } from '@/contexts/ShoppingCartContext'
+import {
+  CheckoutContainer,
+  CheckoutInfo,
+  CloseButton,
+  Content,
+  ContentContainer,
+  Item,
+  ItemImageContainer,
+  ItemInfoContainer,
+  ItemsContainer,
+} from '@/styles/components/shoppingCartModal'
+import * as Dialog from '@radix-ui/react-dialog'
+import { X } from 'phosphor-react'
 
 export function ShoppingCartModal() {
   const { openModal, toggleOpenModal } = useShoppingCart()
 
-  return (    
+  return (
     <Dialog.Root open={openModal} onOpenChange={toggleOpenModal}>
       <Dialog.Portal>
         <Content>
@@ -16,7 +25,6 @@ export function ShoppingCartModal() {
             <CloseButton>
               <X size={24} />
             </CloseButton>
-            
 
             <ItemsContainer>
               <Item>
@@ -54,7 +62,6 @@ export function ShoppingCartModal() {
                   <button>Remover</button>
                 </ItemInfoContainer>
               </Item>
-
             </ItemsContainer>
 
             <CheckoutContainer>
@@ -75,6 +82,6 @@ export function ShoppingCartModal() {
           </ContentContainer>
         </Content>
       </Dialog.Portal>
-    </Dialog.Root>  
+    </Dialog.Root>
   )
 }

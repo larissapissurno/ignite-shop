@@ -1,5 +1,5 @@
-import { ShoppingCartModal } from "@/components/ShoppingCartModal"
-import { createContext, useContext, useState } from "react"
+import { ShoppingCartModal } from '@/components/ShoppingCartModal'
+import { createContext, ReactNode, useContext, useState } from 'react'
 
 interface Product {
   id: string
@@ -15,7 +15,7 @@ interface ShoppingCartContextData {
 }
 
 interface ShoppingCartProviderProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const ShoppingCartContext = createContext({} as ShoppingCartContextData)
@@ -29,7 +29,6 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [showShoppingCart, setShowShoppingCart] = useState(true)
   const [products, setProducts] = useState<Product[]>([])
 
-
   function addProduct(product: Product) {
     setProducts([...products, product])
   }
@@ -39,14 +38,16 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   }
 
   return (
-    <ShoppingCartContext.Provider value={{
+    <ShoppingCartContext.Provider
+      value={{
         openModal,
         toggleOpenModal,
         products,
         addProduct,
         showShoppingCart,
-        setShowShoppingCart
-      }}>
+        setShowShoppingCart,
+      }}
+    >
       {children}
 
       <ShoppingCartModal />

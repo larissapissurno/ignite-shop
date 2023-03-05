@@ -1,34 +1,37 @@
-import { stripe } from "@/lib/stripe"
-import { ImageContainer, ProductContainer, ProductDetails } from "@/styles/pages/product"
-import { GetStaticPaths, GetStaticProps } from "next"
-import Image from "next/image"
-import { useRouter } from "next/router"
-import Stripe from "stripe"
+import { stripe } from '@/lib/stripe'
+import {
+  ImageContainer,
+  ProductContainer,
+  ProductDetails,
+} from '@/styles/pages/product'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import Image from 'next/image'
+import Stripe from 'stripe'
 import axios from 'axios'
-import { useState } from "react"
-import Head from "next/head"
-import { useShoppingCart } from "@/contexts/ShoppingCartContext"
+import { useState } from 'react'
+import Head from 'next/head'
+import { useShoppingCart } from '@/contexts/ShoppingCartContext'
 
 interface ProductProps {
   product: {
-    id: string,
-    name: string,
-    imageUrl: string,
+    id: string
+    name: string
+    imageUrl: string
     price: string
     description: number
     defaultPriceId: string
   }
 }
 
-export default function Product( { product }: ProductProps ) {
+export default function Product({ product }: ProductProps) {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false)
   const { addProduct } = useShoppingCart()
-  
+
   async function handleBuyProduct() {
     try {
       setIsCheckoutLoading(true)
       const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId
+        priceId: product.defaultPriceId,
       })
 
       const { checkoutUrl } = response.data
@@ -38,7 +41,6 @@ export default function Product( { product }: ProductProps ) {
       setIsCheckoutLoading(false)
       alert('Falha ao realizar a compra. Tente novamente mais tarde.')
     }
-
   }
 
   if (!product) {
@@ -62,7 +64,10 @@ export default function Product( { product }: ProductProps ) {
           <p>{product.description}</p>
 
           <div>
-            <button disabled={isCheckoutLoading} onClick={() => addProduct(product)}>
+            <button
+              disabled={isCheckoutLoading}
+              onClick={() => addProduct(product)}
+            >
               Adicionar na sacola
             </button>
 
@@ -79,37 +84,40 @@ export default function Product( { product }: ProductProps ) {
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: true
+    fallback: true,
   }
 }
 
-
-export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
+  params,
+}) => {
   const productId = params?.id || ''
 
-  const product = await stripe.products.retrieve(productId, {
-    expand: ['default_price']
-  }).then(product => {
-    const price = product.default_price as Stripe.Price
-    const formattedPrice = new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(price.unit_amount! / 100)
+  const product = await stripe.products
+    .retrieve(productId, {
+      expand: ['default_price'],
+    })
+    .then((product) => {
+      const price = product.default_price as Stripe.Price
+      const formattedPrice = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(price.unit_amount! / 100)
 
-    return {
-      id: product.id,
-      name: product.name,
-      imageUrl: product.images[0],
-      price: formattedPrice,
-      description: product.description,
-      defaultPriceId: price.id
-    }
-  })
+      return {
+        id: product.id,
+        name: product.name,
+        imageUrl: product.images[0],
+        price: formattedPrice,
+        description: product.description,
+        defaultPriceId: price.id,
+      }
+    })
 
   return {
     props: {
-      product
+      product,
     },
-    revalidate: 60 * 60 * 1 // 1 hour
+    revalidate: 60 * 60 * 1, // 1 hour
   }
 }

@@ -19,7 +19,7 @@ export const {
       gray100: '#e1e1e6',
 
       green500: '#00875f',
-      green300: '#00b37e'
+      green300: '#00b37e',
     },
 
     fontSizes: {
@@ -28,6 +28,6 @@ export const {
       lg: '1.25rem', // 20px
       xl: '1.5rem', // 24px
       '2xl': '2rem',
-    }
-  }
+    },
+  },
 })

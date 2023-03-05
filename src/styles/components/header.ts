@@ -1,4 +1,4 @@
-import { styled } from "..";
+import { styled } from '..'
 
 export const HeaderContainer = styled('header', {
   padding: '2rem 0',
@@ -13,9 +13,8 @@ export const HeaderContainer = styled('header', {
   variants: {
     centralized: {
       true: {
-        justifyContent: 'center'
-      }
-    }
-  }
+        justifyContent: 'center',
+      },
+    },
+  },
 })
-
