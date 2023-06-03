@@ -1,4 +1,5 @@
 import { ShoppingCartModal } from '@/components/ShoppingCartModal'
+import axios from 'axios'
 import { createContext, ReactNode, useContext, useState } from 'react'
 
 interface Product {
@@ -12,6 +13,7 @@ interface ShoppingCartContextData {
   addProduct: (product: Product) => void
   showShoppingCart: boolean
   setShowShoppingCart: (show: boolean) => void
+  checkoutSingleItem: (defaultPriceId: string) => Promise<string>
 }
 
 interface ShoppingCartProviderProps {
@@ -37,6 +39,14 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     setOpenModal(open)
   }
 
+  async function checkoutSingleItem(defaultPriceId: string): Promise<string> {
+    return axios
+      .post('/api/checkout', {
+        priceId: defaultPriceId,
+      })
+      .then((response) => response.data?.checkoutUrl)
+  }
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -46,6 +56,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         addProduct,
         showShoppingCart,
         setShowShoppingCart,
+        checkoutSingleItem,
       }}
     >
       {children}

@@ -7,7 +7,6 @@ import {
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Image from 'next/image'
 import Stripe from 'stripe'
-import axios from 'axios'
 import { useState } from 'react'
 import Head from 'next/head'
 import { useShoppingCart } from '@/contexts/ShoppingCartContext'
@@ -25,22 +24,22 @@ interface ProductProps {
 
 export default function Product({ product }: ProductProps) {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false)
-  const { addProduct } = useShoppingCart()
+  const { addProduct, checkoutSingleItem } = useShoppingCart()
 
-  async function handleBuyProduct() {
-    try {
-      setIsCheckoutLoading(true)
-      const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId,
+  function handleBuyProduct() {
+    setIsCheckoutLoading(true)
+
+    checkoutSingleItem(product.defaultPriceId)
+      .then((checkoutUrl) => {
+        window.location.href = checkoutUrl
       })
-
-      const { checkoutUrl } = response.data
-
-      window.location.href = checkoutUrl
-    } catch (error) {
-      setIsCheckoutLoading(false)
-      alert('Falha ao realizar a compra. Tente novamente mais tarde.')
-    }
+      .catch((error) => {
+        console.log(error)
+        alert('Falha ao realizar a compra. Tente novamente mais tarde.')
+      })
+      .finally(() => {
+        setIsCheckoutLoading(false)
+      })
   }
 
   if (!product) {
