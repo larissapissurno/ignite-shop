@@ -14,11 +14,11 @@ import { useShoppingCart } from '@/contexts/ShoppingCartContext'
 interface ProductProps {
   product: {
     id: string
+    defaultPriceId: string
+    description: string
     name: string
     imageUrl: string
     price: string
-    description: number
-    defaultPriceId: string
   }
 }
 

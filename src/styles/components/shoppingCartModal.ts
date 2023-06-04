@@ -10,7 +10,7 @@ export const Overlay = styled(Dialog.Overlay, {
 })
 
 export const Content = styled(Dialog.Content, {
-  minWidth: '32rem',
+  width: '32rem',
   height: '100vh',
   padding: '4.5rem 3rem 2.5rem', // top, right, bottom, left
   backgroundColor: '$gray800',
@@ -67,6 +67,7 @@ export const ItemImageContainer = styled('div', {
   width: 102,
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: 8,
+  position: 'relative',
 })
 
 export const ItemInfoContainer = styled('div', {

@@ -4,6 +4,11 @@ import { createContext, ReactNode, useContext, useState } from 'react'
 
 interface Product {
   id: string
+  defaultPriceId: string
+  description: string
+  imageUrl: string
+  name: string
+  price: string
 }
 
 interface ShoppingCartContextData {

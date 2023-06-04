@@ -11,11 +11,12 @@ import {
   ItemsContainer,
 } from '@/styles/components/shoppingCartModal'
 import * as Dialog from '@radix-ui/react-dialog'
+import Image from 'next/image'
 import { X } from 'phosphor-react'
 
 export function ShoppingCartModal() {
-  const { openModal, toggleOpenModal } = useShoppingCart()
-
+  const { openModal, toggleOpenModal, products } = useShoppingCart()
+  console.log('products ===> ', products)
   return (
     <Dialog.Root open={openModal} onOpenChange={toggleOpenModal}>
       <Dialog.Portal>
@@ -27,41 +28,19 @@ export function ShoppingCartModal() {
             </CloseButton>
 
             <ItemsContainer>
-              <Item>
-                <ItemImageContainer>
-                  {/* <Image src={} /> */}
-                </ItemImageContainer>
+              {products.map((product) => (
+                <Item key={product.id}>
+                  <ItemImageContainer>
+                    <Image src={product.imageUrl} alt="" fill />
+                  </ItemImageContainer>
 
-                <ItemInfoContainer>
-                  <span>Camiseta Beyond the Limits</span>
-                  <strong>R$ 79,90</strong>
-                  <button>Remover</button>
-                </ItemInfoContainer>
-              </Item>
-
-              <Item>
-                <ItemImageContainer>
-                  {/* <Image src={} /> */}
-                </ItemImageContainer>
-
-                <ItemInfoContainer>
-                  <span>Camiseta Beyond the Limits</span>
-                  <strong>R$ 79,90</strong>
-                  <button>Remover</button>
-                </ItemInfoContainer>
-              </Item>
-
-              <Item>
-                <ItemImageContainer>
-                  {/* <Image src={} /> */}
-                </ItemImageContainer>
-
-                <ItemInfoContainer>
-                  <span>Camiseta Beyond the Limits</span>
-                  <strong>R$ 79,90</strong>
-                  <button>Remover</button>
-                </ItemInfoContainer>
-              </Item>
+                  <ItemInfoContainer>
+                    <span>{product.name}</span>
+                    <strong>{product.price}</strong>
+                    <button>Remover</button>
+                  </ItemInfoContainer>
+                </Item>
+              ))}
             </ItemsContainer>
 
             <CheckoutContainer>
